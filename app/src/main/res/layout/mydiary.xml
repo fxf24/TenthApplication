@@ -32,12 +32,14 @@
                 android:textSize="15dp" />
 
             <Button
+                android:onClick="onClick"
                 android:id="@+id/btnsave"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="저장" />
 
             <Button
+                android:onClick="onClick"
                 android:id="@+id/btncancel"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
