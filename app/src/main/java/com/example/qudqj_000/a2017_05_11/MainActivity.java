@@ -194,7 +194,19 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             else{
+                Date date = new Date(dp1.getYear(), dp1.getMonth(), dp1.getDayOfMonth());
+                String name = nameFormat(date);
+                String path = getExternalPath();
 
+                try {
+                    BufferedWriter bw = new BufferedWriter(new FileWriter(path + "diary/" + name + ".txt", false));
+                    bw.write(memo.getText().toString());
+                    bw.newLine();
+                    bw.close();
+                    Toast.makeText(this, "수정완료", Toast.LENGTH_SHORT).show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             showFileList();
         }
@@ -251,9 +263,12 @@ public class MainActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                String date = name.get(position).substring(0,8);
+                String[] date = name.get(position).substring(0,8).split("-");
+                date[0] = "20"+date[0];
+                Toast.makeText(MainActivity.this, date[1], Toast.LENGTH_SHORT).show();
+                dp1.init(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]),null);
 
-
+                btnsave.setText("수정");
                 linear1.setVisibility(View.INVISIBLE);
                 linear2.setVisibility(View.VISIBLE);
             }
