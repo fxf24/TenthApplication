@@ -78,10 +78,6 @@ public class MainActivity extends AppCompatActivity {
 
         File file = new File(path + "diary");
         file.mkdir();
-//
-//        String msg = "디렉터리 생성";
-//        if(file.isDirectory() == false) msg="디렉토리 생성 오류";
-//        Toast.makeText(this, msg,Toast.LENGTH_SHORT).show();
     }
 
     void showFileList() {
@@ -144,14 +140,13 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     readFile(path + "diary/" + filename + ".txt");
+                                    btnsave.setText("수정");
                                 }
                             }).show();
                     linear1.setVisibility(View.INVISIBLE);
                     linear2.setVisibility(View.VISIBLE);
                     temp = filename;
                     count++;
-
-                    btnsave.setText("수정");
                     return;
                 }
 
@@ -160,7 +155,6 @@ public class MainActivity extends AppCompatActivity {
 
             } else {
                 if(count !=0) {
-                    Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
                     deleteExternalFile(path + "diary/" + temp + ".txt");
                     count = 0;
                 }
