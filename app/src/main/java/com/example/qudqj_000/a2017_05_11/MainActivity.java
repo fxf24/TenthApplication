@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     DatePicker dp1;
     LinearLayout linear1, linear2;
     int count=0;
-    String temp;
+    String temp, itemRightNow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,6 +158,11 @@ public class MainActivity extends AppCompatActivity {
                     deleteExternalFile(path + "diary/" + temp + ".txt");
                     count = 0;
                 }
+                if(filename.equals(itemRightNow)) {
+                }
+                else
+                    deleteExternalFile(path + "diary/"+itemRightNow+ ".txt");
+
                 writeFile(path + "diary/" + filename + ".txt");
                 Toast.makeText(this, "수정완료", Toast.LENGTH_SHORT).show();
                 btnsave.setText("저장");
@@ -199,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String path = getExternalPath();
-
+                itemRightNow = name.get(position);
                 readFile(path + "diary/" + name.get(position) + ".txt");
 
                 String[] date = name.get(position).substring(0, 8).split("-");
